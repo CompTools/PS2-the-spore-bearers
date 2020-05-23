@@ -4,11 +4,15 @@
 
 input="mini.csv"
 
-head -n 1 $input > new.csv && awk -F"," '{
-         if (($3 ~ /GNV/ ||$7 ~ /GNV/) && ($13 ~ /1/ || $16 ~/1/))
-            print $0
-     }' $input >> new.csv && echo 'check new.csv'
+echo "Enter airport of interest => "
+read airport
+	
+awk -F"," -v airport=$airport '{
+     if (($3 ~ airport || $7 ~ airport) && ($13 ~ /1/ || $16 ~/1/)) print $0
+     }' $input > new.csv
      
+echo "delayed flights to or from $airport => " && wc -l < new.csv
+
 #head -n 1 prints the first line of the original csv and adds to new csv
 # -F option indicates delimiter to awk (here, a comma)
 # $3 specifies third column, ~ tells awk to look for /regex/
