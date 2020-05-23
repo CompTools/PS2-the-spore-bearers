@@ -13,9 +13,12 @@ awk -F"," -v airport=$airport '{
      
 echo "delayed flights to or from $airport => " && wc -l < new.csv
 
-#head -n 1 prints the first line of the original csv and adds to new csv
-# -F option indicates delimiter to awk (here, a comma)
-# $3 specifies third column, ~ tells awk to look for /regex/
+# read airport names the variable airport
+# but then you have to specify it again for awk with airport=$airport 
+# -v option specifies that there's a variable in the awk expression
+# -F option indicates which delimiter awk looks for (here, a comma)
+# $3 specifies third column, ~ tells awk to look for variable or /regex/
 # for successful matches, print $0 = print entire line of match
 # specify the file to do the awk command AFTER the if expression (here, $input)
-# >> append to new csv
+# > exports to new.csv
+# wc -l counts the lines (=number of flights) in new.csv
