@@ -2,10 +2,13 @@
 
 #menu-driven script to answer problem set 2
 input="mini.csv"
-DELAY=3
+DELAY=5
+clear
+while true
+do
 clear
 echo "
-        What can we do for you?
+    What is your quest?
 
         1. Count number of delayed flights to/from an airport
         2. Produce table to compare delays from GNV to ATL, CLT, & MIA
@@ -13,6 +16,8 @@ echo "
         4. See airports in Florida in dataset
         5. TSA reminder
         0. Quit
+
+        (answers displayed 5s)
      "
     read -p "  Enter selection [0-5] > " REPLY
 
@@ -20,10 +25,10 @@ echo "
           1)
                echo "Enter airport of interest => "
                read airport
-               awk -F"," -v airport=$airport '{
-               if (($3 ~ airport || $7 ~ airport) && ($13 ~ /1/ || $16 ~/1/)) print $0
-               }' $input > new.csv
-               echo "delayed flights to or from $airport => " && wc -l < new.csv
+               awk -F"," -v airport=$airport '{if (($3 ~ airport || $7 ~ airport) && ($13 ~ /1/ || $16 ~/1/)) print $0}' $input > list.csv
+               echo "delayed flights to or from $airport: " && wc -l < list.csv
+               sleep "$DELAY"
+               unlink list.csv
                ;;
           2)
                echo "working on it..."
@@ -37,8 +42,14 @@ echo "
                sleep "$DELAY"
                ;;
           4)    
-               echo "working on it..."
+                awk -F, '{if ($5 ~ /FL/ ) { print $4 }}' $input | sort -u > aa.csv && awk -F, '{if ($9 ~ /FL/) {print $8 }}' $input | sort -u > bb.csv
+
+                cat aa.csv bb.csv > cc.csv
+                sort -u /tmp/cc.csv | tr -d "\""
                sleep "$DELAY"
+                unlink aa.csv
+                unlink bb.csv
+                unlink cc.csv
                ;;
           5)
                echo "If you see something, say something."
@@ -54,3 +65,4 @@ echo "
           exit 1
           ;; 
      esac
+     done
