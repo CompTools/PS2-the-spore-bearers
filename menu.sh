@@ -30,7 +30,10 @@ echo "
                sleep "$DELAY"
                ;;
           3)
-               echo "working on it..."
+                list1="$(awk -F"," 'FNR > 1 { gsub(/"/,"", $3); print ($3) }' $input)"
+                list2="$(awk -F"," 'FNR > 1 { gsub(/"/,"", $7); print ($7) }' $input)"
+                list3=$list1' '$list2
+                echo $list3 | tr ' ' '\n' | sort | uniq
                sleep "$DELAY"
                ;;
           4)    
@@ -38,7 +41,7 @@ echo "
                sleep "$DELAY"
                ;;
           5)
-               echo "if you see something, say something."
+               echo "If you see something, say something."
                sleep "$DELAY"
                ;;
         

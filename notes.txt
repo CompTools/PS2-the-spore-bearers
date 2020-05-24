@@ -1,4 +1,0 @@
-#useful notes and such
-
-Found a bit of bash magic for opening and viewing .csv files:
-cat data.csv | column -t -s, | less -S
