@@ -45,7 +45,7 @@ echo "
                 awk -F, '{if ($5 ~ /FL/ ) { print $4 }}' $input | sort -u > aa.csv && awk -F, '{if ($9 ~ /FL/) {print $8 }}' $input | sort -u > bb.csv
 
                 cat aa.csv bb.csv > cc.csv
-                sort -u /tmp/cc.csv | tr -d "\""
+                sort -u cc.csv | tr -d "\""
                sleep "$DELAY"
                 unlink aa.csv
                 unlink bb.csv
