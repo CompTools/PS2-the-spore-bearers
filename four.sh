@@ -10,12 +10,16 @@
 #sort unique each step into a new csv file
 #merge the two csv files aa.csv and bb.csv
 #sort unique into cc.csv
-
+#trim at the end the " that will come with the results
 
 input=flights.May2017-Apr2018.csv
-awk -F, '{if ($5 ~ /FL/) {print $4 }}' $input | sort -u > aa.csv && awk -F, '{if ($9 ~ /FL/) {print $8 }}' $input | sort -u > bb$
+awk -F, '{if ($5 ~ /FL/ ) { print $4 }}' $input | sort -u > aa.csv && awk -F, '{if ($9 ~ /FL/) {print $8 }}' $input | sort -u > bb$
 
 cat aa.csv bb.csv > cc.csv
-sort -u cc.csv
+sort -u cc.csv | tr -d "\""
 
 
+#list1="$(awk -F, '{if ($5 ~ /FL/) {print $4}}' $input)"
+#list2="$(awk -F, '{if ($9 ~ /FL/) {print $8}}' $input)"
+#list3=$list1' '$list2
+#echo $list3 | tr ' ' '\n' | sort | uniq
