@@ -50,6 +50,24 @@ What is your quest?
                GNV2MIAf="$(awk -F"," '{if (($3 ~ /GNV/) && ($7 ~ /MIA/)) count++ }END{ print count }' $input2)"
                GNV2MIAd="$(awk -F"," '{if (($3 ~ /GNV/) && ($7 ~ /MIA/) && ($13 ~ /1/ || $16 ~ /1/)) count++ }END{print count }' $input2)"
                GNV2MIAw="$(awk -F"," '{if (($3 ~ /GNV/) && ($7 ~ /MIA/) && ($13 ~ /1/ || $16 ~ /1/) && ($24 ~ /[1-9]+/)) count++}END{ print count }' $input2)"
+
+               divider===================================
+               divider=$divider$divider
+
+               header="%-6s %10s %10s %10s\n"
+               format="%-6s %10d %10d %10d\n"
+
+               width=39
+
+               printf "$header" "GNV to" "Flights" "Delayed" "Weather"
+
+               printf "%$width.${width}s\n" "$divider" 
+
+               printf "$format" \
+               ATL $GNV2ATLf $GNV2ATLd $GNV2ATLw \
+               CLT $GNV2CLTf $GNV2CLTd $GNV2CLTw \
+               MIA $GNV2MIAf $GNV2MIAd $GNV2MIAw \
+               
                sleep "$DELAY"
                unlink temp2.csv
                ;;
@@ -65,7 +83,7 @@ What is your quest?
 
                 cat aa.csv bb.csv > cc.csv
                 sort -u cc.csv | tr -d "\""
-               sleep "$DELAY"
+                sleep "$DELAY"
                 unlink aa.csv
                 unlink bb.csv
                 unlink cc.csv
