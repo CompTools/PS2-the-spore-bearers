@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #This is the Spore Bearers' script for Problem Set 2
-#elena's branch
 
 
 #Question 4 
@@ -18,8 +17,4 @@ awk -F, '{if ($5 ~ /FL/ ) { print $4 }}' $input | sort -u > aa.csv && awk -F, '{
 cat aa.csv bb.csv > cc.csv
 sort -u cc.csv | tr -d "\""
 
-
-#list1="$(awk -F, '{if ($5 ~ /FL/) {print $4}}' $input)"
-#list2="$(awk -F, '{if ($9 ~ /FL/) {print $8}}' $input)"
-#list3=$list1' '$list2
-#echo $list3 | tr ' ' '\n' | sort | uniq
+#he updated code will fix the added " that printed the first time that is the tr -d section 
