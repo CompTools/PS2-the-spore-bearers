@@ -36,7 +36,7 @@ MIA |
 
 3. Within a function, print a list of all unique airport codes contained in the dataset. (*3 points*)
 
-**Grading: 3pts. Though as a note, this is very slow to show this. Your method reads through the files twice which takes some time. Also not a function, but taking points off for that in q2.
+**Grading: 3pts. Though as a note, this is very slow to show this. Your method reads through the files twice which takes some time. Also not a function, but taking points off for that in q2.**
 
 4. Within a function list the cities in Florida that have airports in the dataset. (*2 points*)
 
@@ -70,7 +70,7 @@ Using functions correctly | 2 points | **0pts--no functions**
 Using comments in code | 2 points | **1pt--no comments, but fairly clear**
 Using spacing to make code readable | 2 points |**2pts**
 Getting the correct answer | 2 points | **2pts**
-**Question 2 total | 13 | 10 pts.
+**Question 2 total | 13 | 10 pts.**
 
 **Extra credit: +5pts.**
 
